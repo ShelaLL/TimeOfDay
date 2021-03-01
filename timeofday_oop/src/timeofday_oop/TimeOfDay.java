@@ -1,15 +1,19 @@
 package timeofday_oop;
 
+//Abstract State Invariants. (The clients can see this, talk about the values of the getters)
 /**
  * Each instance of this class represents a time of day.
  * 
  * @invar | 0 <= getHours() && getHours() <=23
  * @invar | 0 <= getMinutes() && getMinutes() <=59
  * 
- * @immutable
  */
 public class TimeOfDay {
 
+	//Here are the concrete state invariants, ot visible to the clients, talk about the values of the fields
+	//@invar | 0 <= minutesSinceMidnight
+	//@invar | minutesSinceMidnight < 24 * 60
+	//private final int minutesSinceMidnight
 	/**
 	 * @invar | 0 <= hours && hours <= 23
 	 * @invar | 0 <= minutes && minutes <= 59
@@ -20,12 +24,12 @@ public class TimeOfDay {
 	/**
 	 * @basic
 	 */
-	public int getHours() {return hours;}
+	public int getHours() {return hours;} //return minutesSinceMidnight/60;
 
 	/**
 	 * @basic
 	 */
-	public int getMinutes() {return minutes;}
+	public int getMinutes() {return minutes;} //return minutesSinceMidnight % 60
 
 
 	/**
@@ -52,5 +56,38 @@ public class TimeOfDay {
 
 		this.hours = hours;
 		this.minutes = minutes;
+		
+		//this.minutesSinceMidnight = hours * 60 + minutes
+		
+		//Even though change to minutesSinceMidnight, documentation dont change 
+	}
+	
+	/**
+	 * Sets this object's hours to the given hours.
+	 * 
+	 * @mutates | this
+	 * 
+	 * @pre | 0 <= newHours && newHours <= 23
+	 * 
+	 * @post | getHours() == newHours
+	 * @post | getMinutes() == old(getMinutes())
+	 * 
+	 */
+	public void setHours(int newHours) {
+		this.hours = newHours;
+	}
+	
+	/**
+	 * Sets this object's minutes to the given minutes.
+	 * 
+	 * @mutates | this
+	 * 
+	 * @pre | 0 <= newMinutes && newMinutes <= 59
+	 * 
+	 * @post | getHours() == old(getHours())
+	 * @post | getMinutes() == newMinutes
+	 */
+	public void setMinutes(int newMinutes) {
+		this.minutes = newMinutes;
 	}
 }
