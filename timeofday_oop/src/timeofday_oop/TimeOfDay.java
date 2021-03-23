@@ -1,5 +1,7 @@
 package timeofday_oop;
 
+
+//New Changes
 //Abstract State Invariants. (The clients can see this, talk about the values of the getters)
 /**
  * Each instance of this class represents a time of day.
@@ -90,4 +92,5 @@ public class TimeOfDay {
 	public void setMinutes(int newMinutes) {
 		this.minutes = newMinutes;
 	}
+	
 }
